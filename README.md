@@ -20,15 +20,14 @@ Official, independently buildable Avalonia Browser entries used by the AtomUI ma
 
 ## Included entries
 
-| Key | Project | AtomUI |
+| Key | Source | AtomUI |
 | --- | --- | --- |
-| `Button_Basic` | `entries/controls/button/basic/AtomUI.ManualExamples.Controls.Button.Basic.csproj` | `6.1.2` |
+| `Button_Basic` | [`controls/button/basic`](entries/controls/button/basic/) | `6.1.2` |
 
 ## Build one entry
 
 ```bash
-dotnet restore entries/controls/button/basic/AtomUI.ManualExamples.Controls.Button.Basic.csproj --locked-mode
-dotnet publish entries/controls/button/basic/AtomUI.ManualExamples.Controls.Button.Basic.csproj -c Release --no-restore
+./scripts/build-entry.sh Button_Basic
 ```
 
 ## Verify the repository

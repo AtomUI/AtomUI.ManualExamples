@@ -36,6 +36,15 @@ for file in "${required_root_files[@]}"; do
     [[ -f "${file}" ]] || fail "missing root file: ${file}"
 done
 
+required_executables=(
+    "scripts/build-entry.sh"
+    "scripts/test-build-entry.sh"
+)
+
+for file in "${required_executables[@]}"; do
+    [[ -x "${file}" ]] || fail "missing executable file: ${file}"
+done
+
 [[ ! -e "examples.manifest.json" ]] || fail "legacy examples.manifest.json is not allowed"
 [[ ! -e "examples" ]] || fail "legacy examples directory is not allowed"
 [[ -d "entries" ]] || fail "missing entries directory"
@@ -145,5 +154,6 @@ while IFS=$'\t' read -r shared_key project_file; do
 done < <(jq -r '.sharedProjects[] | [.key, .projectFile] | @tsv' catalog.json)
 
 dotnet sln AtomUI.ManualExamples.slnx list >/dev/null
+"${repository_root}/scripts/test-build-entry.sh"
 
 printf 'Verified %d entry(s).\n' "${entry_count}"

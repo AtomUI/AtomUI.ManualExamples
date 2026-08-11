@@ -71,4 +71,12 @@ cmp -s "${expected_log}" "${dotnet_log}" || {
     fail "dotnet invocation did not match the build contract"
 }
 
+grep -Fq './scripts/build-entry.sh Button_Basic' "${repository_root}/README.md" ||
+    fail "README does not use the EntryKey build command"
+grep -Fq '[`controls/button/basic`](entries/controls/button/basic/)' "${repository_root}/README.md" ||
+    fail "README does not use the compact source link"
+if grep -Fq 'dotnet restore entries/controls/button/basic/' "${repository_root}/README.md"; then
+    fail "README still contains the long quick-start restore command"
+fi
+
 printf 'build-entry tests passed.\n'
