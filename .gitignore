@@ -8,6 +8,7 @@
 # IDE and local tooling files
 .idea/
 .vscode/
+.worktrees/
 
 # macOS metadata
 .DS_Store
