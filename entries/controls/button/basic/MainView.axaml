@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:atom="https://atomui.net"
+             FontFamily="fonts:AlibabaSans#Alibaba Sans, $Default"
+             x:Class="AtomUI.ManualExamples.Controls.Button.Basic.MainView">
+  <Border Padding="40"
+          Background="{atom:SharedTokenResource ColorBgContainer}">
+    <WrapPanel HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Orientation="Horizontal">
+      <WrapPanel.Styles>
+        <Style Selector="atom|Button">
+          <Setter Property="Margin" Value="0,0,20,42" />
+        </Style>
+      </WrapPanel.Styles>
+
+      <atom:Button ButtonType="Primary"
+                   Height="64"
+                   FontSize="28"
+                   Padding="30,0"
+                   Content="Primary Button" />
+      <atom:Button Height="64"
+                   FontSize="28"
+                   Padding="30,0"
+                   Content="Default Button" />
+      <atom:Button ButtonType="Dashed"
+                   Height="64"
+                   FontSize="28"
+                   Padding="30,0"
+                   Content="Dashed" />
+      <atom:Button ButtonType="Text"
+                   Height="64"
+                   FontSize="28"
+                   Padding="30,0"
+                   Content="Text Button" />
+      <atom:Button ButtonType="Link"
+                   Height="64"
+                   FontSize="28"
+                   Padding="30,0"
+                   Content="Link Button" />
+    </WrapPanel>
+  </Border>
+</UserControl>

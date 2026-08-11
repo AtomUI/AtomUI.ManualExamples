@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-browser</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <RootNamespace>AtomUI.ManualExamples.Controls.Button.Basic</RootNamespace>
+    <AssemblyName>AtomUI.ManualExamples.Controls.Button.Basic</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WasmEnableThreads>false</WasmEnableThreads>
+    <WasmEnableWebcil>false</WasmEnableWebcil>
+    <WasmBuildNative>true</WasmBuildNative>
+    <RunAOTCompilation>false</RunAOTCompilation>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AtomUI.Desktop.Controls" Version="6.1.2" />
+    <PackageReference Include="AtomUI.Fonts.AlibabaSans" Version="6.1.2" />
+    <PackageReference Include="Avalonia.Browser" Version="12.1.0" />
+  </ItemGroup>
+
+  <Target Name="DeduplicateBrowserWasmStaticWebAssets"
+          AfterTargets="ResolveWasmOutputs"
+          BeforeTargets="_GenerateBuildWasmBootJson;_AddWasmStaticWebAssets">
+    <RemoveDuplicates Inputs="@(WasmStaticWebAsset)">
+      <Output TaskParameter="Filtered" ItemName="_DeduplicatedWasmStaticWebAsset" />
+    </RemoveDuplicates>
+    <ItemGroup>
+      <WasmStaticWebAsset Remove="@(WasmStaticWebAsset)" />
+      <WasmStaticWebAsset Include="@(_DeduplicatedWasmStaticWebAsset)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="ExcludeDesktopPlatformAssembliesFromBrowserWasm"
+          AfterTargets="_GetDefaultWasmAssembliesToBundle"
+          BeforeTargets="PrepareInputsForWasmBuild">
+    <ItemGroup>
+      <WasmAssembliesToBundle Remove="@(WasmAssembliesToBundle)"
+                              Condition="'%(FileName)' == 'Avalonia.Wayland' or
+                                         '%(FileName)' == 'NWayland' or
+                                         '%(FileName)' == 'Avalonia.Win32' or
+                                         '%(FileName)' == 'Avalonia.Win32.Automation'" />
+    </ItemGroup>
+  </Target>
+
+</Project>

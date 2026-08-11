@@ -1,0 +1,44 @@
+html,
+body,
+#out {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    background: #ffffff;
+}
+
+.splash {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #6b7280;
+    background: #ffffff;
+    font: 14px/20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.splash-spinner {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    border: 2px solid #e5e7eb;
+    border-top-color: #e60012;
+    border-radius: 50%;
+    animation: spin 700ms linear infinite;
+}
+
+.splash.splash-close {
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

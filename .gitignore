@@ -1,0 +1,13 @@
+# .NET build outputs
+**/bin/
+**/obj/
+
+# Local publish output
+**/publish/
+
+# IDE and local tooling files
+.idea/
+.vscode/
+
+# macOS metadata
+.DS_Store

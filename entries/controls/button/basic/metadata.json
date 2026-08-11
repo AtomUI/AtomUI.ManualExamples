@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "key": "Button_Basic",
+  "title": "Button Types",
+  "description": "The five basic AtomUI button types.",
+  "entryControlType": "AtomUI.ManualExamples.Controls.Button.Basic.MainView",
+  "preview": {
+    "width": 900,
+    "height": 254,
+    "supportsDarkMode": true
+  },
+  "sources": [
+    {
+      "path": "MainView.axaml",
+      "displayName": "MainView.axaml",
+      "language": "xml",
+      "primary": true,
+      "order": 10
+    },
+    {
+      "path": "MainView.axaml.cs",
+      "displayName": "MainView.axaml.cs",
+      "language": "csharp",
+      "primary": false,
+      "order": 20
+    },
+    {
+      "path": "App.axaml.cs",
+      "displayName": "App.axaml.cs",
+      "language": "csharp",
+      "primary": false,
+      "order": 30
+    },
+    {
+      "path": "AtomUI.ManualExamples.Controls.Button.Basic.csproj",
+      "displayName": "Project file",
+      "language": "xml",
+      "primary": false,
+      "order": 40
+    }
+  ],
+  "sourceArchive": {
+    "includeProject": true,
+    "includeSharedProjects": true
+  }
+}

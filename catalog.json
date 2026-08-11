@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "productKey": "AtomUI",
+  "entriesRoot": "entries",
+  "entries": [
+    {
+      "key": "Button_Basic",
+      "directory": "entries/controls/button/basic",
+      "metadataFile": "metadata.json",
+      "projectFile": "AtomUI.ManualExamples.Controls.Button.Basic.csproj"
+    }
+  ],
+  "sharedProjects": []
+}
