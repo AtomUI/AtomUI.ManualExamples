@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+repository_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 catalog_file="${repository_root}/catalog.json"
 
 fail() {
@@ -59,8 +59,23 @@ is_safe_relative_path "${entry_directory}" || fail "unsafe entry directory: ${en
 [[ "${entry_directory}" == entries/* ]] || fail "entry must remain under entries/: ${entry_directory}"
 is_safe_relative_path "${project_file}" || fail "unsafe project file: ${project_file}"
 [[ "${project_file}" != */* ]] || fail "project file must be a filename: ${project_file}"
+[[ "${project_file}" =~ ^[^/]+\.csproj$ ]] || fail "project file must be a .csproj filename: ${project_file}"
 
 project_path="${entry_directory}/${project_file}"
+entries_root="${repository_root}/entries"
+[[ -d "${entries_root}" ]] || fail "missing entries directory"
+canonical_entries_root="$(cd "${entries_root}" && pwd -P)"
+[[ "${canonical_entries_root}" == "${entries_root}" ]] || fail "entries directory must not be a symbolic link"
+
+project_directory_path="${repository_root}/${entry_directory}"
+[[ -d "${project_directory_path}" ]] || fail "missing entry directory: ${entry_directory}"
+canonical_project_directory="$(cd "${project_directory_path}" && pwd -P)"
+case "${canonical_project_directory}/" in
+    "${canonical_entries_root}/"*) ;;
+    *) fail "entry directory resolves outside entries/: ${entry_directory}" ;;
+esac
+
+[[ ! -L "${repository_root}/${project_path}" ]] || fail "project must not be a symbolic link: ${project_path}"
 [[ -f "${repository_root}/${project_path}" ]] || fail "missing project: ${project_path}"
 
 cd "${repository_root}"
