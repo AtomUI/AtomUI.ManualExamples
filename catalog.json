@@ -1,14 +1,21 @@
 {
-  "schemaVersion": 1,
-  "productKey": "AtomUI",
-  "entriesRoot": "entries",
+  "schema": "showcase-catalog-v1",
+  "libraryKey": "AtomUIManualExamples",
   "entries": [
     {
       "key": "Button_Basic",
-      "directory": "entries/controls/button/basic",
-      "metadataFile": "metadata.json",
-      "projectFile": "AtomUI.ManualExamples.Controls.Button.Basic.csproj"
+      "title": "Button Types",
+      "description": "The five basic AtomUI button types.",
+      "category": "Button",
+      "project": "entries/controls/button/basic/AtomUI.ManualExamples.Controls.Button.Basic.csproj",
+      "previewHeight": 420,
+      "source": {
+        "primary": "entries/controls/button/basic/MainView.axaml",
+        "files": [
+          "entries/controls/button/basic/MainView.axaml",
+          "entries/controls/button/basic/MainView.axaml.cs"
+        ]
+      }
     }
-  ],
-  "sharedProjects": []
+  ]
 }
